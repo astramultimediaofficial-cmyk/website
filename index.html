@@ -441,11 +441,74 @@
 
     <script>
         // Splash Screen Logic
+         // --- PASTE YOUR GOOGLE WEB APP URL HERE ---
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
         window.addEventListener('load', () => {
             setTimeout(() => {
-                document.getElementById('splash-screen').classList.add('splash-hidden');
+                splash.classList.add('splash-hidden');
+                setTimeout(() => {
+                    modal.classList.add('show');
+                    startTimer();
+                }, 500); 
             }, 1200);
         });
+
+        function startTimer() {
+            autoCloseTimer = setTimeout(() => { closeModal(); }, 5000);
+        }
+
+        function stopTimer() {
+            if (autoCloseTimer) {
+                clearTimeout(autoCloseTimer);
+                console.log("Timer stopped: User interacting.");
+            }
+        }
+
+        regForm.addEventListener('mousedown', stopTimer);
+        regForm.addEventListener('keydown', stopTimer);
+
+        function closeModal() {
+            modal.classList.remove('show');
+        }
+
+        // --- GOOGLE SHEETS SUBMISSION LOGIC ---
+        regForm.addEventListener('submit', e => {
+            e.preventDefault();
+            stopTimer(); // Ensure it doesn't close while sending
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Processing...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(regForm)})
+                .then(response => {
+                    formContainer.innerHTML = `
+                        <div style="padding: 20px;">
+                            <i class="fas fa-check-circle" style="font-size: 4rem; color: #2563eb; margin-bottom: 20px;"></i>
+                            <h2>Thank You!</h2>
+                            <p>Your registration is successful. Our team will contact you soon.</p>
+                            <button onclick="closeModal()" class="btn-reg" style="margin-top:20px;">Close</button>
+                        </div>
+                    `;
+                    // Auto close modal after 3 seconds of success
+                    setTimeout(closeModal, 4000);
+                })
+                .catch(error => {
+                    alert('Error!', error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Confirm Registration";
+                });
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+
 
         // NEW: Scroll Reveal Logic
         const revealElements = document.querySelectorAll('.reveal');
@@ -465,4 +528,5 @@
     </script>
 </body>
 </html>
+
 
