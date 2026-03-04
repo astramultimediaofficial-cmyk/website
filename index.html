@@ -518,24 +518,10 @@
     </script>
 
 
-        // NEW: Scroll Reveal Logic
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            for (let i = 0; i < revealElements.length; i++) {
-                let windowHeight = window.innerHeight;
-                let elementTop = revealElements[i].getBoundingClientRect().top;
-                let elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    revealElements[i].classList.add('active');
-                }
-            }
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        // Initial check
-        revealOnScroll();
-    </script>
+       
 </body>
 </html>
+
 
 
 
