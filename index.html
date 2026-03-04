@@ -36,7 +36,40 @@
             z-index: -1;
         }
 
-        /* --- 2. NAVIGATION & DROPDOWN --- */
+         /* --- 2. REGISTRATION MODAL --- */
+        #registration-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9000; opacity: 0; visibility: hidden;
+            transition: 0.5s ease; backdrop-filter: blur(10px);
+        }
+
+        #registration-modal.show { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            position: relative; background: rgba(10, 10, 10, 0.95);
+            padding: 40px; border-radius: 25px; border: 1px solid rgba(37, 99, 235, 0.4);
+            width: 95%; max-width: 420px; box-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+            max-height: 90vh; overflow-y: auto; text-align: center;
+        }
+
+        .close-modal { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 1.5rem; cursor: pointer; transition: 0.3s; z-index: 100; }
+        .close-modal:hover { color: #2563eb; transform: rotate(90deg); }
+
+        .modal-content h2 { text-transform: uppercase; letter-spacing: 2px; font-size: 1.8rem; margin-bottom: 5px; color: #fff; }
+        .modal-content .subtitle { color: #2563eb; font-size: 0.8rem; font-weight: bold; margin-bottom: 25px; text-transform: uppercase; }
+        
+        .input-group { margin-bottom: 18px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 8px; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .input-group input, .input-group select { width: 100%; padding: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; border-radius: 12px; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus { border-color: #2563eb; background: rgba(37, 99, 235, 0.05); }
+
+        .btn-reg { width: 100%; padding: 16px; background: #2563eb; color: white; border: none; border-radius: 12px; font-weight: bold; text-transform: uppercase; cursor: pointer; margin-top: 10px; transition: 0.4s; }
+        .btn-reg:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
+        .btn-reg:disabled { background: #555; cursor: not-allowed; }
+
+        /* --- 3. NAVIGATION & DROPDOWN --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 0.2rem 4rem; background: rgba(2, 8, 23, 0.95); position: sticky; top: 0; z-index: 1000;
@@ -72,7 +105,7 @@
         .btn-touch { background: #2563eb; color: #fff; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: bold; transition: 0.4s; box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
         .btn-touch:hover { background: #1d4ed8; box-shadow: 0 0 25px rgba(37, 99, 235, 0.6); transform: scale(1.05); }
 
-        /* --- 3. HERO SECTION --- */
+        /* --- 4. HERO SECTION --- */
         .hero-section {
             padding: 80px 6%; display: flex; align-items: center; gap: 50px;
             background: radial-gradient(circle at top right, #1e1b4b, #000);
@@ -81,7 +114,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .hero-content h1 span { color: #2563eb; text-shadow: 0 0 10px rgba(37, 99, 235, 0.5); } 
 
-        /* --- 4. MARQUEE (PAUSE ON HOVER) --- */
+        /* --- 5. MARQUEE (PAUSE ON HOVER) --- */
         .course-marquee {
             width: 100%; background: #2563eb; color: white; padding: 15px 0;
             overflow: hidden; white-space: nowrap; position: relative;
@@ -102,7 +135,7 @@
             to { transform: translateX(-50%); }
         }
 
-        /* --- 5. STEPS SECTION --- */
+        /* --- 6. STEPS SECTION --- */
         .steps-section { padding: 80px 6%; text-align: center; background: #000; }
         .steps-section h2 { font-size: 3rem; margin-bottom: 15px; }
         .steps-section h2 span { color: #2563eb; }
@@ -130,7 +163,7 @@
         .btn-primary { background-color: #2563eb; color: white; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
 
-        /* --- 6. ACHIEVEMENTS --- */
+        /* --- 7. ACHIEVEMENTS --- */
         .achievements-section {
             padding: 80px 6%; background: #020817; display: flex; justify-content: space-around;
             align-items: center; text-align: center; flex-wrap: wrap; gap: 40px;
@@ -146,7 +179,7 @@
         .achievement-number { font-size: 3.5rem; font-weight: 900; color: #fff; display: block; line-height: 1; margin-bottom: 5px; }
         .achievement-label { font-size: 0.9rem; text-transform: uppercase; color: #2563eb; font-weight: 700; letter-spacing: 2px; }
 
-        /* --- 7. WHY CHOOSE ASTRA --- */
+        /* --- 8. WHY CHOOSE ASTRA --- */
         .why-astra-section { padding: 80px 6%; background: #000; text-align: center; }
         .why-astra-section h2 { font-size: 3rem; margin-bottom: 50px; }
         .why-astra-section h2 span { color: #2563eb; }
@@ -156,7 +189,7 @@
         .why-card i { font-size: 2.5rem; color: #2563eb; margin-bottom: 20px; transition: 0.3s; }
         .why-card:hover i { transform: scale(1.2); filter: drop-shadow(0 0 10px #2563eb); }
 
-        /* --- 8. TESTIMONIALS --- */
+        /* --- 9. TESTIMONIALS --- */
         .testimonial-section { padding: 80px 6%; text-align: center; background: #020817; }
         .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
         .testi-card { transition: 0.4s; padding: 20px; border-radius: 15px; }
@@ -167,7 +200,7 @@
         .testi-text { font-size: 1rem; color: #cbd5e1; font-style: italic; margin-bottom: 15px; }
         .stars { color: #fbbf24; font-size: 1.2rem; }
 
-        /* --- 9. FOOTER --- */
+        /* --- 10. FOOTER --- */
         .main-footer { background-color: #000; color: #fff; padding: 60px 0 20px 0; border-top: 1px solid #1e293b; position: relative; overflow: hidden; }
         .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 0 20px; }
         .footer-col h4 { margin-bottom: 20px; color: #2563eb; text-transform: uppercase; font-size: 1rem; }
@@ -194,6 +227,40 @@
 
     <div id="splash-screen">
         <div class="splash-name">ASTRA MULTIMEDIA</div>
+    </div>
+ <div id="registration-modal">
+        <div class="modal-content" id="modal-box">
+            <i class="fas fa-times close-modal" onclick="closeModal()"></i>
+            <div id="form-container">
+                <h2>Join Astra</h2>
+                <p class="subtitle">Secure Your Future In Tech</p>
+                <form id="regForm">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" name="Name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" name="Email" placeholder="name@company.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="Phone" placeholder="+91" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Target Course</label>
+                        <select name="Course">
+                            <option value="UI/UX Design">UI & UX Design</option>
+                            <option value="Graphic Design">Graphic Design</option>
+                            <option value="VFX Production">VFX Production</option>
+                            <option value="Animation">2D & 3D Animation</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-reg" id="submit-btn">Confirm Registration</button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <nav>
@@ -398,3 +465,4 @@
     </script>
 </body>
 </html>
+
