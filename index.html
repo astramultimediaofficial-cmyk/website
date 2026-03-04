@@ -441,7 +441,12 @@
 
     <script>
         // Splash Screen Logic
-         // --- PASTE YOUR GOOGLE WEB APP URL HERE ---
+        const splash = document.getElementById('splash-screen');
+        const modal = document.getElementById('registration-modal');
+        const regForm = document.getElementById('regForm');
+        const submitBtn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        let autoCloseTimer;
         const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
         window.addEventListener('load', () => {
@@ -528,5 +533,6 @@
     </script>
 </body>
 </html>
+
 
 
