@@ -446,27 +446,26 @@
         const regForm = document.getElementById('regForm');
         const submitBtn = document.getElementById('submit-btn');
         const formContainer = document.getElementById('form-container');
-        let autoCloseTimer;
+      
         const scriptURL = 'const scriptURL = 'https://script.google.com/macros/s/AKfycbwhc6L7SBf-1JglPPzQY_kTg-lS6Wpl7L7ZzChpkc0n3w-qU4hj7SDolh0mbWaPMZG8LQ/exec';
-
+        let autoCloseTimer;
         window.addEventListener('load', () => {
             setTimeout(() => {
                 splash.classList.add('splash-hidden');
                 setTimeout(() => {
                     modal.classList.add('show');
                     startTimer();
-                }, 500); 
-            }, 1200);
+                }, 400); 
+            }, 600);
         });
 
         function startTimer() {
-            autoCloseTimer = setTimeout(() => { closeModal(); }, 5000);
+            autoCloseTimer = setTimeout(() => { closeModal(); }, 8000);
         }
 
         function stopTimer() {
             if (autoCloseTimer) {
                 clearTimeout(autoCloseTimer);
-                console.log("Timer stopped: User interacting.");
             }
         }
 
@@ -487,7 +486,7 @@
             fetch(scriptURL, { method: 'POST', body: new FormData(regForm)})
                 .then(response => {
                     formContainer.innerHTML = `
-                        <div style="padding: 20px;">
+                        <div style="padding: 20px; text-align: center;">
                             <i class="fas fa-check-circle" style="font-size: 4rem; color: #2563eb; margin-bottom: 20px;"></i>
                             <h2>Thank You!</h2>
                             <p>Your registration is successful. Our team will contact you soon.</p>
@@ -495,20 +494,24 @@
                         </div>
                     `;
                     // Auto close modal after 3 seconds of success
-                    setTimeout(closeModal, 4000);
+                    setTimeout(closeModal, 3000);
                 })
                 .catch(error => {
                     alert('Error!', error.message);
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = "Confirm Registration";
+                    alert("Submission failed. Please try again.");
                 });
         });
 
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = () => {
             revealElements.forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
-            });
+                let windowHeight = window.innerHeight;
+            let elementTop = el.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                el.classList.add('active');
+            }
         };
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
@@ -533,6 +536,7 @@
     </script>
 </body>
 </html>
+
 
 
 
