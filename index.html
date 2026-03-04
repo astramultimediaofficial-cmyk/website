@@ -13,16 +13,20 @@
             background-color: #000; display: flex; justify-content: center;
             align-items: center; z-index: 10000; transition: 0.8s;
         }
-        .splash-name {
-            color: #fff; font-size: 3rem; font-weight: 900;
-            letter-spacing: 8px; text-transform: uppercase;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+      .splash-name {
+    color: #fff; 
+    font-size: 3rem; 
+    font-weight: 900;
+    letter-spacing: 8px; 
+    text-transform: uppercase;
+    /* This makes it appear once smoothly rather than blinking forever */
+    animation: fadeInSplash 1s ease-in forwards;
+}
+
+@keyframes fadeInSplash {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
         .splash-hidden { opacity: 0; visibility: hidden; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -521,6 +525,7 @@
        
 </body>
 </html>
+
 
 
 
