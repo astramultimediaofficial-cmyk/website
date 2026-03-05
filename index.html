@@ -13,32 +13,27 @@
             background-color: #000; display: flex; justify-content: center;
             align-items: center; z-index: 10000; transition: 0.8s;
         }
-      .splash-name {
-    color: #fff; 
-    font-size: 3rem; 
-    font-weight: 900;
-    letter-spacing: 8px; 
-    text-transform: uppercase;
-    /* This makes it appear once smoothly rather than blinking forever */
-    animation: fadeIn 1.5s ease-in out;
-}
-@keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+        .splash-name {
+            color: #fff; font-size: 3rem; font-weight: 900;
+            letter-spacing: 8px; text-transform: uppercase;
+            animation: pulse 1.5s infinite;
         }
-
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
         .splash-hidden { opacity: 0; visibility: hidden; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #000; color: #fff; overflow-x: hidden; line-height: 1.6; }
 
-
         /* NEW ANIMATION: Dynamic Starfield Background */
-       /* body::before {
+        body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05), transparent);
-            z-index: -1;//
+            z-index: -1;
         }
 
          /* --- 2. REGISTRATION MODAL --- */
@@ -56,7 +51,7 @@
             position: relative; background: rgba(10, 10, 10, 0.95);
             padding: 40px; border-radius: 25px; border: 1px solid rgba(37, 99, 235, 0.4);
             width: 95%; max-width: 420px; box-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
-            text-align: center;
+            max-height: 90vh; overflow-y: auto; text-align: center;
         }
 
         .close-modal { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 1.5rem; cursor: pointer; transition: 0.3s; z-index: 100; }
@@ -451,9 +446,9 @@
         const regForm = document.getElementById('regForm');
         const submitBtn = document.getElementById('submit-btn');
         const formContainer = document.getElementById('form-container');
-      
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwhc6L7SBf-1JglPPzQY_kTg-lS6Wpl7L7ZzChpkc0n3w-qU4hj7SDolh0mbWaPMZG8LQ/exec';
         let autoCloseTimer;
+        const scriptURL = 'const scriptURL = 'https://script.google.com/macros/s/AKfycbwhc6L7SBf-1JglPPzQY_kTg-lS6Wpl7L7ZzChpkc0n3w-qU4hj7SDolh0mbWaPMZG8LQ/exec';
+
         window.addEventListener('load', () => {
             setTimeout(() => {
                 splash.classList.add('splash-hidden');
@@ -461,16 +456,17 @@
                     modal.classList.add('show');
                     startTimer();
                 }, 500); 
-            }, 2000);
+            }, 1200);
         });
 
-        function closeModal() {
-            modal.classList.remove('show');
+        function startTimer() {
+            autoCloseTimer = setTimeout(() => { closeModal(); }, 5000);
         }
 
         function stopTimer() {
             if (autoCloseTimer) {
                 clearTimeout(autoCloseTimer);
+                console.log("Timer stopped: User interacting.");
             }
         }
 
@@ -490,39 +486,53 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(regForm)})
                 .then(response => {
-                    formContainer.innerHTML = "<h2>Success!</h2><p>Data sent to Google Sheets.</p>";
-                    ;
+                    formContainer.innerHTML = `
+                        <div style="padding: 20px;">
+                            <i class="fas fa-check-circle" style="font-size: 4rem; color: #2563eb; margin-bottom: 20px;"></i>
+                            <h2>Thank You!</h2>
+                            <p>Your registration is successful. Our team will contact you soon.</p>
+                            <button onclick="closeModal()" class="btn-reg" style="margin-top:20px;">Close</button>
+                        </div>
+                    `;
                     // Auto close modal after 3 seconds of success
-                    setTimeout(closeModal, 3000);
+                    setTimeout(closeModal, 4000);
                 })
                 .catch(error => {
                     alert('Error!', error.message);
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = "Confirm Registration";
-                    alert("Submission failed. Please try again.");
                 });
         });
 
         const revealElements = document.querySelectorAll('.reveal');
         const revealOnScroll = () => {
             revealElements.forEach(el => {
-                let windowHeight = window.innerHeight;
-            let elementTop = el.getBoundingClientRect().top;
-            if (elementTop < windowHeight - 100) {
-                el.classList.add('active');
-            }
+                if (el.getBoundingClientRect().top < window.innerHeight - 150) el.classList.add('active');
+            });
         };
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
     </script>
 
 
-       
+        // NEW: Scroll Reveal Logic
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            for (let i = 0; i < revealElements.length; i++) {
+                let windowHeight = window.innerHeight;
+                let elementTop = revealElements[i].getBoundingClientRect().top;
+                let elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('active');
+                }
+            }
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        // Initial check
+        revealOnScroll();
+    </script>
 </body>
 </html>
-
-
-
 
 
 
