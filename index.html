@@ -28,7 +28,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #000; color: #fff; overflow-x: hidden; line-height: 1.6; }
 
-        /* NEW ANIMATION: Dynamic Starfield Background */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -36,7 +35,7 @@
             z-index: -1;
         }
 
-         /* --- 2. REGISTRATION MODAL --- */
+        /* --- 2. REGISTRATION MODAL --- */
         #registration-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
@@ -69,158 +68,32 @@
         .btn-reg:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5); }
         .btn-reg:disabled { background: #555; cursor: not-allowed; }
 
-        /* --- 3. NAVIGATION & DROPDOWN --- */
+        /* --- 3. NAVIGATION --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 0.2rem 4rem; background: rgba(2, 8, 23, 0.95); position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(37, 99, 235, 0.2);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.2); backdrop-filter: blur(10px);
         }
-        .logo img { height: 60px; width: auto; display: block; transition: transform 0.3s ease; }
-        .logo img:hover { transform: scale(1.05) rotate(-2deg); }
-
+        .logo img { height: 60px; width: auto; display: block; }
         .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #2563eb; transition: 0.3s; }
+        .nav-links a { text-decoration: none; color: #fff; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: #2563eb; }
-        .nav-links a:hover::after { width: 100%; }
+        .btn-touch { background: #2563eb; color: #fff; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: bold; }
 
-        .dropdown-container { position: relative; }
-        .dropdown-menu {
-            position: absolute; top: 100%; left: 0; list-style: none;
-            background-color: #020817; min-width: 260px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px;
-            padding: 15px 0; z-index: 2000;
-            opacity: 0; visibility: hidden; transform: translateY(10px);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .dropdown-container:hover .dropdown-menu {
-            opacity: 1; visibility: visible; transform: translateY(0);
-        }
-        .dropdown-menu li a { padding: 10px 25px; font-size: 0.8rem; text-transform: none; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.05); display: block; }
-        .dropdown-menu li a:hover { background-color: rgba(37, 99, 235, 0.1); color: #2563eb; padding-left: 30px; }
-        .dropdown-header { color: #2563eb; font-size: 0.7rem; font-weight: 900; padding: 5px 25px; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
-
-        .btn-touch { background: #2563eb; color: #fff; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: bold; transition: 0.4s; box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
-        .btn-touch:hover { background: #1d4ed8; box-shadow: 0 0 25px rgba(37, 99, 235, 0.6); transform: scale(1.05); }
-
-        /* --- 4. HERO SECTION --- */
-        .hero-section {
-            padding: 80px 6%; display: flex; align-items: center; gap: 50px;
-            background: radial-gradient(circle at top right, #1e1b4b, #000);
-            animation: fadeIn 1.5s ease-out;
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .hero-content h1 span { color: #2563eb; text-shadow: 0 0 10px rgba(37, 99, 235, 0.5); } 
-
-        /* --- 5. MARQUEE (PAUSE ON HOVER) --- */
-        .course-marquee {
-            width: 100%; background: #2563eb; color: white; padding: 15px 0;
-            overflow: hidden; white-space: nowrap; position: relative;
-            display: flex; align-items: center;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
-        }
-        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
-        .marquee-content a { 
-            text-decoration: none; color: inherit; font-weight: bold; 
-            font-size: 1.1rem; text-transform: uppercase; padding: 0 40px; 
-            display: inline-block; transition: 0.3s;
-        }
-        .marquee-content a:hover { text-shadow: 0 0 10px rgba(255,255,255,0.8); transform: scale(1.1); }
-        .course-marquee:hover .marquee-content { animation-play-state: paused; }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* --- 6. STEPS SECTION --- */
-        .steps-section { padding: 80px 6%; text-align: center; background: #000; }
+        /* --- 4. SECTIONS & MARQUEE --- */
+        .steps-section { padding: 80px 6%; text-align: center; }
         .steps-section h2 { font-size: 3rem; margin-bottom: 15px; }
         .steps-section h2 span { color: #2563eb; }
-        .steps-subtitle { color: #94a3b8; margin-bottom: 60px; max-width: 700px; margin-inline: auto; }
+        .course-marquee { width: 100%; background: #2563eb; color: white; padding: 15px 0; overflow: hidden; white-space: nowrap; margin: 40px 0; }
+        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
+        .marquee-content a { text-decoration: none; color: inherit; font-weight: bold; font-size: 1.1rem; padding: 0 40px; display: inline-block; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        
-        .step-card { 
-            background: #0a0a0a; padding: 40px 30px; border-radius: 20px; 
-            border: 1px solid #1e293b; transition: 0.4s; text-align: left;
-            position: relative; overflow: hidden;
-        }
-        .step-card::before {
-            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-            opacity: 0; transition: 0.5s;
-        }
-        .step-card:hover::before { opacity: 1; }
-        .step-card:hover { border-color: #2563eb; transform: translateY(-10px); background: #020817; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1); }
-        .step-icon { width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: #2563eb; font-size: 1.8rem; transition: 0.3s; }
-        .step-card:hover .step-icon { background: #2563eb; color: #fff; transform: rotateY(360deg); }
-
-        .button-container { display: flex; gap: 15px; justify-content: center; padding: 40px 0; }
-        .btn { text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
-        .btn-secondary { background-color: #1e293b; color: #fff; }
-        .btn-primary { background-color: #2563eb; color: white; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
-
-        /* --- 7. ACHIEVEMENTS --- */
-        .achievements-section {
-            padding: 80px 6%; background: #020817; display: flex; justify-content: space-around;
-            align-items: center; text-align: center; flex-wrap: wrap; gap: 40px;
-            border-top: 1px solid rgba(37, 99, 235, 0.1); border-bottom: 1px solid rgba(37, 99, 235, 0.1);
-        }
-        .achievement-item { flex: 1; min-width: 200px; transition: 0.3s; }
-        .achievement-icon {
-            width: 70px; height: 70px; background: rgba(37, 99, 235, 0.2); border: 1px solid #2563eb;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; color: #2563eb; font-size: 1.8rem; transition: 0.4s;
-        }
-        .achievement-item:hover .achievement-icon { background: #2563eb; color: #fff; transform: scale(1.1) rotate(15deg); box-shadow: 0 0 20px #2563eb; }
-        .achievement-number { font-size: 3.5rem; font-weight: 900; color: #fff; display: block; line-height: 1; margin-bottom: 5px; }
-        .achievement-label { font-size: 0.9rem; text-transform: uppercase; color: #2563eb; font-weight: 700; letter-spacing: 2px; }
-
-        /* --- 8. WHY CHOOSE ASTRA --- */
-        .why-astra-section { padding: 80px 6%; background: #000; text-align: center; }
-        .why-astra-section h2 { font-size: 3rem; margin-bottom: 50px; }
-        .why-astra-section h2 span { color: #2563eb; }
-        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
-        .why-card { background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.2); padding: 30px 20px; border-radius: 15px; transition: 0.3s; }
-        .why-card:hover { border-color: #2563eb; background: rgba(37, 99, 235, 0.15); transform: translateY(-10px) scale(1.05); }
-        .why-card i { font-size: 2.5rem; color: #2563eb; margin-bottom: 20px; transition: 0.3s; }
-        .why-card:hover i { transform: scale(1.2); filter: drop-shadow(0 0 10px #2563eb); }
-
-        /* --- 9. TESTIMONIALS --- */
-        .testimonial-section { padding: 80px 6%; text-align: center; background: #020817; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-        .testi-card { transition: 0.4s; padding: 20px; border-radius: 15px; }
-        .testi-card:hover { background: rgba(255,255,255,0.03); transform: scale(1.02); }
-        .student-img-container { width: 120px; height: 120px; margin: 0 auto 25px; border-radius: 50%; overflow: hidden; border: 3px solid #2563eb; transition: 0.4s; }
-        .testi-card:hover .student-img-container { transform: scale(1.1); box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); }
-        .student-img-container img { width: 100%; height: 100%; object-fit: cover; }
-        .testi-text { font-size: 1rem; color: #cbd5e1; font-style: italic; margin-bottom: 15px; }
-        .stars { color: #fbbf24; font-size: 1.2rem; }
-
-        /* --- 10. FOOTER --- */
-        .main-footer { background-color: #000; color: #fff; padding: 60px 0 20px 0; border-top: 1px solid #1e293b; position: relative; overflow: hidden; }
-        .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 0 20px; }
-        .footer-col h4 { margin-bottom: 20px; color: #2563eb; text-transform: uppercase; font-size: 1rem; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .footer-col ul li a:hover { color: #fff; padding-left: 5px; }
-        .footer-bottom { text-align: center; padding: 20px; border-top: 1px solid #1e293b; margin-top: 40px; color: #64748b; font-size: 0.8rem; }
-        .bg-text { font-size: 10vw; font-weight: 900; background: linear-gradient(to bottom, #2563eb, #000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.15; text-align: center; pointer-events: none; }
-        .bg-text-container { width: 100%; margin-top: 20px; }
-
-        /* SCROLL REVEAL ANIMATION */
+        .step-card { background: #0a0a0a; padding: 40px 30px; border-radius: 20px; border: 1px solid #1e293b; text-align: left; }
+        .step-icon { width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: #2563eb; font-size: 1.8rem; }
+        .main-footer { background-color: #000; color: #fff; padding: 60px 0 20px 0; border-top: 1px solid #1e293b; text-align: center; }
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) {
-            .steps-grid, .testimonial-grid { grid-template-columns: 1fr; }
-            nav { padding: 1rem; flex-direction: column; }
-            .nav-links { gap: 1rem; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
-        }
     </style>
 </head>
 <body>
@@ -228,7 +101,8 @@
     <div id="splash-screen">
         <div class="splash-name">ASTRA MULTIMEDIA</div>
     </div>
- <div id="registration-modal">
+
+    <div id="registration-modal">
         <div class="modal-content" id="modal-box">
             <i class="fas fa-times close-modal" onclick="closeModal()"></i>
             <div id="form-container">
@@ -266,188 +140,55 @@
     <nav>
         <div class="logo"><img src="logo.png" alt="Astra Logo"></div>
         <ul class="nav-links">
-            <li><a href="Home.html">Home</a></li>
-            <li class="dropdown-container">
-                <a href="Our Courses.html">Our Courses <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
-                <ul class="dropdown-menu">
-                    <div class="dropdown-header">Creative Courses</div>
-                    <li><a href="courses.html">2D & 3D Animation</a></li>
-                    <li><a href="courses.html">Graphic Design</a></li>
-                    <li><a href="courses.html">UI/UX Design</a></li>
-                    <li><a href="courses.html">VFX & Compositing</a></li>
-                    <li><a href="courses.html">Video Editing</a></li>
-                    <li><a href="courses.html">Digital Marketing</a></li>
-                    
-                    <div class="dropdown-header">IT Courses</div>
-                    <li><a href="courses.html">Front-End Development</a></li>
-                    <li><a href="courses.html">Back-End Development</a></li>
-                </ul>
-            </li>
-            <li><a href="Mentor.html">Mentors</a></li>
-            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Mentors</a></li>
+            <li><a href="#">About Us</a></li>
         </ul>
-        <a href="contact.html" class="btn-touch">GET IN TOUCH</a>
+        <a href="#" class="btn-touch">GET IN TOUCH</a>
     </nav>
    
     <section class="steps-section reveal">
         <h2>Master the Craft in <span>3 Simple</span> Steps</h2>
-        <p class="steps-subtitle">Industry-aligned training, expert-led studios, and a direct path to your creative career.</p>
-        
         <div class="course-marquee">
             <div class="marquee-content">
-                <a href="courses.html">Graphic Design</a> 
-                <a href="courses.html">UI/UX Design</a> 
-                <a href="courses.html">2D Animation</a> 
-                <a href="courses.html">VFX</a> 
-                <a href="courses.html">Digital Marketing</a> 
-                <a href="courses.html">3D Animation</a> 
-                <a href="courses.html">Video Editing</a>
-                <a href="courses.html">Front-end development</a> 
-                <a href="courses.html">Back-end development</a> 
-                <a href="courses.html">Graphic Design</a> 
-                <a href="courses.html">UI/UX Design</a> 
-                <a href="courses.html">2D Animation</a> 
-                <a href="courses.html">VFX</a> 
-             </div>
+                <a href="#">Graphic Design</a> <a href="#">UI/UX Design</a> <a href="#">2D Animation</a> <a href="#">VFX</a> 
+                <a href="#">Web Development</a> <a href="#">3D Animation</a> <a href="#">Graphic Design</a> <a href="#">UI/UX Design</a>
+            </div>
         </div>
-
-        <div class="steps-grid" style="margin-top: 60px;">
+        <div class="steps-grid">
             <div class="step-card">
                 <div class="step-icon"><i class="fas fa-user-plus"></i></div>
                 <h3>Apply to Us</h3>
-                <p>Submit your application to begin your journey with Coimbatore's leading multimedia academy.</p>
+                <p>Submit your application to begin your journey.</p>
             </div>
             <div class="step-card">
                 <div class="step-icon"><i class="fas fa-id-card"></i></div>
                 <h3>Get Enrolled</h3>
-                <p>Complete registration and get immediate access to our high-end studio facilities and AI lab.</p>
+                <p>Complete registration and get immediate access.</p>
             </div>
             <div class="step-card">
                 <div class="step-icon"><i class="fas fa-rocket"></i></div>
                 <h3>Start Learning</h3>
-                <p>Unlock your potential with industry projects and personalized mentorship from experts.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="button-container reveal">
-        <a href="index.html" class="btn btn-secondary">Home</a>
-        <a href="courses.html" class="btn btn-primary">
-            View Our Courses <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-
-    <section class="achievements-section reveal">
-        <div class="achievement-item">
-            <div class="achievement-icon"><i class="fas fa-user-tie"></i></div>
-            <span class="achievement-number">16</span>
-            <span class="achievement-label">Specialists</span>
-        </div>
-        <div class="achievement-item">
-            <div class="achievement-icon"><i class="fas fa-users"></i></div>
-            <span class="achievement-number">1256</span>
-            <span class="achievement-label">Happy Students</span>
-        </div>
-        <div class="achievement-item">
-            <div class="achievement-icon"><i class="fas fa-briefcase"></i></div>
-            <span class="achievement-number">27</span>
-            <span class="achievement-label">Studio Projects</span>
-        </div>
-        <div class="achievement-item">
-            <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
-            <span class="achievement-number">14</span>
-            <span class="achievement-label">Awards Won</span>
-        </div>
-    </section>
-
-    <section class="why-astra-section reveal">
-        <h2>Why <span>Choose Astra?</span></h2>
-        <div class="why-grid">
-            <div class="why-card">
-                <i class="fas fa-user-tie"></i>
-                <h4>Industry Expert Trainers</h4>
-            </div>
-            <div class="why-card">
-                <i class="fas fa-laptop-code"></i>
-                <h4>Live Practical Projects</h4>
-            </div>
-            <div class="why-card">
-                <i class="fas fa-check-double"></i>
-                <h4>100% Placement Provided</h4>
-            </div>
-            <div class="why-card">
-                <i class="fas fa-calendar-alt"></i>
-                <h4>Flexible Class Timings</h4>
-            </div>
-            <div class="why-card">
-                <i class="fas fa-desktop"></i>
-                <h4>Online & Offline Classes</h4>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonial-section reveal">
-        <h2>What Our <span>Students Say</span></h2>
-        <div class="testimonial-grid">
-            <div class="testi-card">
-                <div class="student-img-container"><img src="student1.jpg" alt="Student"></div>
-                <p class="testi-text">"The best place to learn UI/UX. The mentors are actually from the industry!"</p>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            </div>
-            <div class="testi-card">
-                <div class="student-img-container"><img src="student2.jpg" alt="Student"></div>
-                <p class="testi-text">"Astra helped me land my first job as a 3D Animator. Forever grateful!"</p>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            </div>
-            <div class="testi-card">
-                <div class="student-img-container"><img src="student3.jpg" alt="Student"></div>
-                <p class="testi-text">"High-end workstations and great environment. 10/10 recommendation."</p>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>Unlock your potential with industry projects.</p>
             </div>
         </div>
     </section>
 
     <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="courses.html">Our Courses</a></li>
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-facebook" style="color:#2563eb;"></i> Facebook</a>
-                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-instagram" style="color:#2563eb;"></i> Instagram</a>
-                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-whatsapp" style="color:#2563eb;"></i> Whatsapp</a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p style="font-size:0.9rem; color:#94a3b8;"><i class="fas fa-envelope" style="color:#2563eb;"></i> astramultimediaofficial@gmail.com</p>
-                <p style="font-size:0.9rem; color:#94a3b8; margin-top:10px;"><i class="fas fa-phone" style="color:#2563eb;"></i> +91 9600292830</p>
-                <p style="font-size:0.9rem; color:#94a3b8; margin-top:10px;"><i class="fas fa-location-arrow" style="color:#2563eb;"></i> Hopes College, Coimbatore - 641004</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Copyright © 2026 Astra Multimedia. Coimbatore. All Rights Reserved.</p>
-        </div>
-        <div class="bg-text-container"><h1 class="bg-text">ASTRA</h1></div>
+        <p>Copyright © 2026 Astra Multimedia. Coimbatore.</p>
     </footer>
 
     <script>
-        // Splash Screen Logic
         const splash = document.getElementById('splash-screen');
         const modal = document.getElementById('registration-modal');
         const regForm = document.getElementById('regForm');
         const submitBtn = document.getElementById('submit-btn');
         const formContainer = document.getElementById('form-container');
         let autoCloseTimer;
-        const scriptURL = 'const scriptURL = 'https://script.google.com/macros/s/AKfycbwhc6L7SBf-1JglPPzQY_kTg-lS6Wpl7L7ZzChpkc0n3w-qU4hj7SDolh0mbWaPMZG8LQ/exec';
+
+        // --- PASTE YOUR GOOGLE WEB APP URL HERE ---
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -513,30 +254,5 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
     </script>
-
-
-        // NEW: Scroll Reveal Logic
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            for (let i = 0; i < revealElements.length; i++) {
-                let windowHeight = window.innerHeight;
-                let elementTop = revealElements[i].getBoundingClientRect().top;
-                let elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    revealElements[i].classList.add('active');
-                }
-            }
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        // Initial check
-        revealOnScroll();
-    </script>
 </body>
 </html>
-
-
-
-
-
-
-
