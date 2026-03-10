@@ -6,21 +6,8 @@
     <title>About Us | Astra Multimedia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- 1. SPLASH SCREEN (2 SECONDS) --- */
-        #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: #000; display: flex;
-            justify-content: center; align-items: center; z-index: 10000;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-        .splash-name {
-            color: #fff; font-size: 3rem; font-weight: 900;
-            letter-spacing: 8px; text-transform: uppercase;
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 0.6; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1); } }
-        .splash-hidden { opacity: 0; visibility: hidden; }
+        /* --- 1. SPLASH SCREEN (2 SECONDS) was Deleted--- */
+       
 
         /* --- 2. CORE THEME --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
@@ -37,6 +24,29 @@
         .nav-links a { text-decoration: none; color: #fff; font-weight: bold; font-size: 0.85rem; text-transform: uppercase; transition: 0.4s; }
         .nav-links a:hover { color: #2563eb; }
         .btn-touch { background: #2563eb; color: #fff; padding: 0.8rem 1.8rem; text-decoration: none; font-weight: bold; border-radius: 50px; transition: 0.4s; }
+ 
+        /* Dropdown */
+
+        .dropdown-container { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; list-style: none;
+            background-color: #020817; min-width: 260px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 8px;
+            padding: 15px 0; z-index: 2000;
+            opacity: 0; visibility: hidden; transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .dropdown-container:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-menu li a { padding: 10px 25px; font-size: 0.8rem; text-transform: none; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.05); display: block; }
+        .dropdown-menu li a:hover { background-color: rgba(37, 99, 235, 0.1); color: #2563eb; padding-left: 30px; }
+        .dropdown-header { color: #2563eb; font-size: 0.7rem; font-weight: 900; padding: 5px 25px; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; }
+
+        .btn-touch { background: #2563eb; color: #fff; padding: 0.6rem 1.4rem; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: bold; transition: 0.4s; box-shadow: 0 0 15px rgba(37, 99, 235, 0.3); }
+        .btn-touch:hover { background: #1d4ed8; box-shadow: 0 0 25px rgba(37, 99, 235, 0.6); transform: scale(1.05); }
+
 
         /* --- 4. ABOUT CONTENT --- */
         .about-hero {
@@ -82,13 +92,16 @@
         .box p { color: #888; }
 
         /* --- 6. FOOTER --- */
-        footer { padding: 60px 4rem 20px; border-top: 1px solid rgba(37, 99, 235, 0.3); background: #000; }
-        .footer-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px; margin-bottom: 50px; }
-        .footer-column h3 { font-size: 1.1rem; margin-bottom: 20px; color: #fff; }
-        .footer-column ul { list-style: none; }
-        .footer-column ul li a { text-decoration: none; color: #aaa; font-size: 0.85rem; transition: 0.3s; }
-        .footer-column ul li a:hover { color: #2563eb; }
-        .bg-text { font-size: 10vw; font-weight: 900; background: linear-gradient(to bottom, #2563eb, #000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.2; text-align: center; }
+        .main-footer { background-color: #000; color: #fff; padding: 60px 0 20px 0; border-top: 1px solid #1e293b; position: relative; overflow: hidden; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 0 20px; }
+        .footer-col h4 { margin-bottom: 20px; color: #2563eb; text-transform: uppercase; font-size: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-col ul li a:hover { color: #fff; padding-left: 5px; }
+        .footer-bottom { text-align: center; padding: 20px; border-top: 1px solid #1e293b; margin-top: 40px; color: #64748b; font-size: 0.8rem; }
+        .bg-text { font-size: 10vw; font-weight: 900; background: linear-gradient(to bottom, #2563eb, #000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.15; text-align: center; pointer-events: none; }
+        .bg-text-container { width: 100%; margin-top: 20px; }
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
@@ -105,13 +118,28 @@
 
     <nav>
         <div class="logo-container">
-            <img src="file_00000000aa1871faa9ad3bd40ba2dac7.png" alt="Astra Logo">
+            <img src="#" alt="Astra Logo">
         </div>
         <ul class="nav-links">
+
             <li><a href="Astra.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown-container">
+                <a href="OurCourse.html">Our Courses <i class="fas fa-chevron-down" style="font-size: 0.7rem; margin-left: 5px;"></i></a>
+                <ul class="dropdown-menu">
+                    <div class="dropdown-header">Creative Courses</div>
+                    <li><a href="courses.html">2D & 3D Animation</a></li>
+                    <li><a href="courses.html">Graphic Design</a></li>
+                    <li><a href="courses.html">UI/UX Design</a></li>
+                    <li><a href="courses.html">VFX & Compositing</a></li>
+                    <li><a href="courses.html">Video Editing</a></li>
+                    <li><a href="courses.html">Digital Marketing</a></li>
+                    
+                    <div class="dropdown-header">IT Courses</div>
+                    <li><a href="courses.html">Front-End Development</a></li>
+                    <li><a href="courses.html">Back-End Development</a></li> </ul>
             <li><a href="mentors.html">Mentors</a></li>
-            <li><a href="OurCourse.html">Our Course</a></li>
+            <li><a href="about.html">About Us</a></li>
+              
         </ul>
         <a href="contact.html" class="btn-touch">GET IN TOUCH</a>
     </nav>
@@ -138,32 +166,37 @@
         </div>
     </section>
 
-    <footer>
+    <footer class="main-footer">
         <div class="footer-container">
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul><li><a href="Astra.html">Home</a></li><li><a href="about.html">About</a></li></ul>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Our Courses</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
-            <div class="footer-column">
-                <h3>Our Courses</h3>
-                <ul><li><a href="OurCourse.html">UI/UX Design</a></li><li><a href="OurCourse.html">VFX</a></li></ul>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-facebook" style="color:#2563eb;"></i> Facebook</a>
+                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-instagram" style="color:#2563eb;"></i> Instagram</a>
+                    <a href="#" style="color:#94a3b8; text-decoration:none; display:block; margin-bottom:10px;"><i class="fab fa-whatsapp" style="color:#2563eb;"></i> Whatsapp</a>
+                </div>
             </div>
-            <div class="footer-column">
-                <h3>Community</h3>
-                <ul><li><a href="#">Events</a></li><li><a href="#">Blog</a></li></ul>
-            </div>
-            <div class="footer-column">
-                <h3>Social</h3>
-                <ul><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li></ul>
-            </div>
-            <div class="footer-column">
-                <h3>Support</h3>
-                <ul><li><a href="#">Privacy</a></li><li><a href="#">Contact</a></li></ul>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p style="font-size:0.9rem; color:#94a3b8;"><i class="fas fa-envelope" style="color:#2563eb;"></i> astramultimediaofficial@gmail.com</p>
+                <p style="font-size:0.9rem; color:#94a3b8; margin-top:10px;"><i class="fas fa-phone" style="color:#2563eb;"></i> +91 9600292830</p>
+                <p style="font-size:0.9rem; color:#94a3b8; margin-top:10px;"><i class="fas fa-location-arrow" style="color:#2563eb;"></i> Hopes College, Coimbatore - 641004</p>
             </div>
         </div>
-        <div class="bg-text">ASTRA</div>
+        <div class="footer-bottom">
+            <p>Copyright © 2026 Astra Multimedia. Coimbatore. All Rights Reserved.</p>
+        </div>
+        <div class="bg-text-container"><h1 class="bg-text">ASTRA</h1></div>
     </footer>
-
     <script>
         window.addEventListener('load', () => {
             setTimeout(() => {
