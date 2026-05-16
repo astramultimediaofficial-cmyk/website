@@ -9,7 +9,7 @@ const TestimonialSection = () => {
         <div className="row">
           <div className="col-xl-6 col-xxl-5 col-md-8 col-lg-6 m-auto">
             <div className="tf__heading_area mb_50">
-              <h5>OUR Testiomonials</h5>
+              <h5>OUR TESTIMONIALS</h5>
               <h2>We have helped create students who say:</h2>
             </div>
           </div>

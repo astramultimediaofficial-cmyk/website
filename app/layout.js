@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "@/public/css/style.css";
+import "@/public/css/home-premium.css";
+import "@/public/css/movie-carousel-3d.css";
 import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({ children }) {

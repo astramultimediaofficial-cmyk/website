@@ -1,126 +1,15 @@
-import { eventData } from "@/data/Data";
-import React from "react";
-import Slider from "react-slick";
+"use client";
 
-const EventSlider = ({ startIndex, endIndex }) => {
-  return (
-    <Slider
-      className="row event_slider"
-      slidesToShow={3} // Set the number of slides to show
-      infinite={true}
-      dots={true}
-      autoplay={true}
-      arrows={false}
-      speed={1000}
-      cssEase="linear"
-      responsive={[
-        {
-          breakpoint: 1400,
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 1,
-          },
-        },
-        {
-          breakpoint: 576,
-          settings: {
-            slidesToShow: 1,
-          },
-        },
-      ]}
-    >
-      {startIndex !== undefined && endIndex !== undefined
-        ? eventData.slice(startIndex, endIndex).map((item, index) => (
-            <div
-              className="col-xl-4 wow fadeInUp"
-              key={item.id}
-              data-wow-delay={`${index * 0.15}s`}
-            >
-              <div className="tf__single_event">
-                <div className="tf__single_event_img">
-                  <img
-                    src={item.imgSrc}
-                    alt="event"
-                    className="img-fluid w-100"
-                  />
-                  <span className={`event_category ${item.color}`}>
-                    {item.category}
-                  </span>
-                </div>
-                <div className="tf__single_event_text">
-                  <ul>
-                    <li>
-                      <i className="far fa-map-marker-alt"></i> {item.location}
-                    </li>
-                    <li>
-                      <i className="far fa-clock"></i> {item.time}
-                    </li>
-                  </ul>
-                  <span className="title">{item.title}</span>
-                  <p>{item.desc}</p>
-                  <div className="tf__single_event_footer">
-                    <span>{item.name}</span>
-                    <span>${item.price}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))
-        : eventData.slice(endIndex).map((item, index) => (
-            <div
-              className="col-xl-4 wow fadeInUp"
-              key={item.id}
-              data-wow-delay={`${index * 0.15}s`}
-            >
-              <div className="tf__single_event">
-                <div className="tf__single_event_img">
-                  <img
-                    src={item.imgSrc}
-                    alt="event"
-                    className="img-fluid w-100"
-                  />
-                  <a className={`event_category ${item.color}`} href="#">
-                    {item.category}
-                  </a>
-                </div>
-                <div className="tf__single_event_text">
-                  <ul>
-                    <li>
-                      <i className="far fa-map-marker-alt"></i> {item.location}
-                    </li>
-                    <li>
-                      <i className="far fa-clock"></i> {item.time}
-                    </li>
-                  </ul>
-                  <span className="title">{item.title}</span>
-                  <p>{item.desc}</p>
-                  <div className="tf__single_event_footer">
-                    <span>{item.name}</span>
-                    <span>${item.price}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-    </Slider>
-  );
+import MovieCarousel3D from "@/component/carousel/MovieCarousel3D";
+import { eventData } from "@/data/Data";
+
+const EventSlider = ({ startIndex, endIndex, autoplay = true }) => {
+  const items =
+    startIndex !== undefined && endIndex !== undefined
+      ? eventData.slice(startIndex, endIndex)
+      : eventData.slice(endIndex);
+
+  return <MovieCarousel3D items={items} autoplay={autoplay} />;
 };
 
 export default EventSlider;
